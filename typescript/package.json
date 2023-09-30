@@ -2,10 +2,15 @@
   "name": "typescript",
   "version": "1.0.0",
   "description": "Kata tic tac toe typescript version",
-  "main": "app.ts",
+  "main": "src/app.ts",
   "scripts": {
+    "dev": "ts-node src/app.ts",
+    "build": "tsc -p .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Wouter Roothooft",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "ts-node": "^10.9.1"
+  }
 }
