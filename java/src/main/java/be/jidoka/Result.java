@@ -4,20 +4,20 @@ import java.util.List;
 
 public class Result {
 
-	private final String message;
+	private final Player nextPlayer;
 
-	private final List<String> coordinates;
+	private final List<BoxState> boardState;
 
-	public Result(String message, List<String> coordinates) {
-		this.message = message;
-		this.coordinates = coordinates;
+	public Result(Player nextPlayer, List<BoxState> boardState) {
+		this.nextPlayer = nextPlayer;
+		this.boardState = boardState;
 	}
 
-	public String getMessage() {
-		return message;
+	public Player getNextPlayer() {
+		return nextPlayer;
 	}
 
-	public List<String> getCoordinates() {
-		return coordinates;
+	public List<BoxState> getBoardState() {
+		return boardState;
 	}
 }

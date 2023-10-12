@@ -1,48 +1,26 @@
 package be.jidoka;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
+
+import static be.jidoka.BoxState.UNOCCUPIED;
 
 public class Application {
 
-	private String currentPlayer = "Player 1";
-
-	private final List<String> currentBoard = new ArrayList<>(List.of(
-			" ", " ", " ",
-			" ", " ", " ",
-			" ", " ", " "
-	));
-
-	private final List<String> boardCoordinates = List.of(
-			"A0", "B0", "C0",
-			"A1", "B1", "C1",
-			"A2", "B2", "C2"
-	);
+	Board board;
 
 	public Result start() {
-		return new Result(String.format("%s:", currentPlayer), currentBoard);
+		board = new Board();
+
+		return new Result(Player.ONE, List.of(
+				UNOCCUPIED, UNOCCUPIED, UNOCCUPIED,
+				UNOCCUPIED, UNOCCUPIED, UNOCCUPIED,
+				UNOCCUPIED, UNOCCUPIED, UNOCCUPIED
+		));
 	}
 
 	public Result play(String coordinate) {
-		final int index = boardCoordinates.indexOf(coordinate);
-		String message;
+		Zet zet = Zet.parse(coordinate);
 
-		if (index == -1) {
-			message = String.format("This coordinate doesn't exist, %s:", currentPlayer);
-		} else if (Objects.equals(currentBoard.get(index), " ")) {
-			if (Objects.equals(currentPlayer, "Player 1")) {
-				currentBoard.set(index, "X");
-				currentPlayer = "Player 2";
-			} else {
-				currentBoard.set(index, "O");
-				currentPlayer = "Player 1";
-			}
-			message = String.format("%s:", currentPlayer);
-		} else {
-			message = String.format("This coordinate is already used, %s:", currentPlayer);
-		}
-
-		return new Result(message, currentBoard);
+		return board.applyZet(zet);
 	}
 }
