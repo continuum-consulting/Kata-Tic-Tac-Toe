@@ -13,7 +13,7 @@ class GameTest {
 
 	@Test
 	void shouldStartTicTacToe() {
-		Game application = new Game();
+		GameApi application = new GameApi();
 
 		Result result = application.start();
 
@@ -28,7 +28,7 @@ class GameTest {
 
 	@Test
 	void shouldPlaceXForPlayer1() {
-		Game application = new Game();
+		GameApi application = new GameApi();
 		application.start();
 
 		Result result = application.play("A0");
@@ -44,7 +44,7 @@ class GameTest {
 
 	@Test
 	void shouldPlaceOForPlayer2() {
-		Game application = new Game();
+		GameApi application = new GameApi();
 		application.start();
 
 		application.play("A0");
@@ -61,7 +61,7 @@ class GameTest {
 
 	@Test
 	void shouldCheckIfCoordinateIsAlreadyOccupied() {
-		Game application = new Game();
+		GameApi application = new GameApi();
 		application.start();
 
 		application.play("A0");
@@ -70,7 +70,7 @@ class GameTest {
 
 	@Test
 	void shouldCheckForNonExistingCoordinates() {
-		Game application = new Game();
+		GameApi application = new GameApi();
 		application.start();
 
 		assertThrows(RuntimeException.class, () -> application.play("NOT_EXISTING"));
@@ -78,7 +78,7 @@ class GameTest {
 
 	@Test
 	void shouldWinWhenThreeInARow() { // horizontal
-		Game application = new Game();
+		GameApi application = new GameApi();
 		application.start();
 
 		application.play("A0");
@@ -98,7 +98,7 @@ class GameTest {
 
 	@Test
 	void shouldWinWhenThreeInAColumn() { // vertical
-		Game application = new Game();
+		GameApi application = new GameApi();
 		application.start();
 
 		application.play("A0");
@@ -118,7 +118,7 @@ class GameTest {
 
 	@Test
 	void shouldWinWhenThreeInDiagonalTopBottom() { // diagonal
-		Game application = new Game();
+		GameApi application = new GameApi();
 		application.start();
 
 		application.play("A0");
@@ -138,7 +138,7 @@ class GameTest {
 
 	@Test
 	void shouldWinWhenThreeInDiagonalBottomTop() { // diagonal
-		Game application = new Game();
+		GameApi application = new GameApi();
 		application.start();
 
 		application.play("A2");

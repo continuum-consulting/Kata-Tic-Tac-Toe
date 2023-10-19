@@ -2,17 +2,23 @@ package be.jidoka;
 
 public class Game {
 
-	private Board board;
+	private final Board board = new Board();
 
-	public Result start() {
-		board = new Board();
+	private Player currentPlayer = Player.ONE;
 
-		return new Result(Player.ONE, board.getBoardState(), null);
-	}
+	public Result applyZet(Zet zet) {
+		board.applyZet(zet, currentPlayer);
 
-	public Result play(String coordinate) {
-		Zet zet = Zet.parse(coordinate);
+		if (board.checkWin(currentPlayer)) {
+			return new Result(null, board.getCurrentState(), currentPlayer);
+		}
 
-		return board.applyZet(zet);
+		if (board.checkBoardFull()) {
+			return new Result(null, board.getCurrentState(), null);
+		}
+
+		currentPlayer = currentPlayer == Player.ONE ? Player.TWO : Player.ONE;
+
+		return new Result(currentPlayer, board.getCurrentState(), null);
 	}
 }

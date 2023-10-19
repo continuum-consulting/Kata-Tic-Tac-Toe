@@ -7,13 +7,13 @@ import java.util.Scanner;
 public class Main {
 
 	public static void main(String[] args) {
-		Game game = new Game();
+		GameApi game = new GameApi();
 		Result start = game.start();
 
 		playGame(game, start);
 	}
 
-	private static void playGame(Game game, Result result) {
+	private static void playGame(GameApi game, Result result) {
 		if (result.getWinner() != null) {
 			System.out.printf("Player %s has won", result.getWinner());
 			return;
@@ -21,7 +21,7 @@ public class Main {
 
 		printBoard(result.getBoardState());
 
-		String input = readLine();
+		String input = readLine(result.getNextPlayer());
 		try {
 			Result nextResult = game.play(input);
 			playGame(game, nextResult);
@@ -31,9 +31,9 @@ public class Main {
 		}
 	}
 
-	private static String readLine() {
+	private static String readLine(Player current) {
 		Scanner scanner = new Scanner(System.in);
-		System.out.println("Enter a value: ");
+		System.out.println(String.format("Enter a value for player '%s' : ", current));
 		return scanner.nextLine();
 	}
 
