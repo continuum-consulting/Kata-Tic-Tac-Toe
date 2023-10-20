@@ -5,13 +5,21 @@ import java.util.Scanner;
 public class Main {
 
 	public static void main(String[] args) {
-		String input = readLine();
-		System.out.println("You entered: " + input);
+		Game game = new Game(System.out::println);
+		game.start();
+
+		while(true) {
+			String input = readLine();
+			if (input.equals("exit")) {
+				break;
+			}
+			game.makeTurn(Coordinate.parse(input));
+
+		}
 	}
 
 	private static String readLine() {
 		Scanner scanner = new Scanner(System.in);
-		System.out.println("Enter a value..");
 		return scanner.nextLine();
 	}
 
