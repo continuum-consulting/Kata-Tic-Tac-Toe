@@ -1,5 +1,14 @@
 # Kata-Tic-Tac-Toe
 
+## Requirements
+
+- 3 hours
+- Node 16 (for typescript part)
+- Java 21 (for java part)
+
+---
+
+## Aim of this kata
 The aim of this kata is to program the well-known game of tic-tac-toe.
 
 Try to use the following things during this kata:
